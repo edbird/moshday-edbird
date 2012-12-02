@@ -28,6 +28,13 @@ class soldier{
         // Set Position
         void spos(double x, double y);
 
+        // Get Viewdir
+        const vector3d& viewdir();
+
+        // Set View/Aim Dir
+        void sviewdir(double x, double y);
+        void rotviewdir(double ang);
+
         // AI continue funtion
         void giveObjective(double obj_x, double obj_y,
                            unsigned char transitType, unsigned char objectiveType);
@@ -42,6 +49,12 @@ class soldier{
         // Color
         double color_red, color_green, color_blue;
 
+        // Human or AI Controlled
+        bool human_control;
+
+        // Fire Method
+        void fire();
+
     protected:
 
     private:
@@ -50,6 +63,7 @@ class soldier{
 
         // Fired Projectiles
         std::vector<projectile> shots;
+        unsigned long long n_shots;
 
         // Move Method
         const unsigned char MOVE_DIRECTION_UP       = 0;
@@ -67,7 +81,11 @@ class soldier{
         bool m_sprinting;
 
         vector3d m_view_dir;
+        public:
+        double viewang;
+        private:
         vector3d m_aim_dir;
+
 
         // Current Objective
         vector3d m_objectivepos;
@@ -144,5 +162,7 @@ class soldier{
 
 
 };
+
+extern soldier* human_soldier;
 
 #endif

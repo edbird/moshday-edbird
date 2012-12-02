@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
     // Camera Stuff
     camera.set_centre_x(0.0d);
     camera.set_centre_y(0.0d);
-    camera.set_width(400.0d);
+    camera.set_width(200.0d);
     camera.set_w2h_ratio(1.0d);
     camera.set_cam_vel(200.0d / fps);
     //camera.set_height(100.0d);
@@ -73,14 +73,24 @@ int main(int argc, char* argv[]){
     nextsoldier0.giveObjective(0.0d, 0.0d, nextsoldier0.TRANSIT_TYPE_GUNRUN, nextsoldier0.OBJECTIVE_TYPE_JUSTMOVE);
     nextsoldier1.giveObjective(0.0d, 0.0d, nextsoldier1.TRANSIT_TYPE_GUNRUN, nextsoldier1.OBJECTIVE_TYPE_JUSTMOVE);
     // TODO: Random Soldiers
-    for(unsigned int addsol = 0; addsol < 10; addsol ++){
+    for(unsigned int addsol = 0; addsol < 1; addsol ++){
         nextsoldier0.spos(-320.0d, -50.0d + 20.0d * addsol);
         nextsoldier1.spos(+320.0d, -60.0d + 20.0d * addsol);
+        nextsoldier0.human_control = true;
+        nextsoldier0.sviewdir(10.0d, 0.0d);
+        nextsoldier0.viewang = 0.0d;
         team0.addSoldier(nextsoldier0);
         team1.addSoldier(nextsoldier1);
         //team0.soldiers.at(addsol).spos(-320.0d, -50.0d + 20.0d * addsol);
         //team1.soldiers.at(addsol).spos(+320.0d, -60.0d + 20.0d * addsol);
     }
+    human_soldier = &team0.soldiers.at(0);
+
+        vector3d temp_vector = human_soldier->pos();
+        camera.set_centre_y(temp_vector.y());
+        camera.set_centre_x(temp_vector.x());
+
+
     /// Team and Player Stuff
 
     // Main loop

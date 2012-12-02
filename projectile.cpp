@@ -8,10 +8,13 @@
 
 projectile::projectile()
 {
-    m_max_range = 0.0d;
+    m_max_range = 100.0d;
     m_vel.reset();
     m_pos.reset();
     m_travel_dist = 0.0d;
+
+    m_rad = 0.1d;
+    live = true;
 }
 
 projectile::~projectile()
@@ -25,6 +28,9 @@ projectile::projectile(const projectile& clone)
     m_vel = clone.m_vel;
     m_pos = clone.m_pos;
     m_travel_dist = clone.m_travel_dist;
+    live = clone.live;
+
+    m_rad = clone.m_rad;
 }
 
 const projectile& projectile::operator=(const projectile& other)
@@ -34,13 +40,22 @@ const projectile& projectile::operator=(const projectile& other)
         m_vel = other.m_vel;
         m_pos = other.m_pos;
         m_travel_dist = other.m_travel_dist;
+        live = other.live;
+
+        m_rad = other.m_rad;
     }
     return *this;
 }
 
 void projectile::cont()
 {
-    m_pos += m_vel * time_step;
+    if(live){
+        m_pos += m_vel * time_step;
+        m_travel_dist += m_vel.mod() * time_step;
+        if(m_travel_dist > m_max_range){
+            live = false;
+        }
+    }
 }
 
 void projectile::set_pos(double x, double y)
@@ -60,11 +75,12 @@ void projectile::set_range(double arg)
 
 void projectile::draw()
 {
+    if(live){
+        // Reset Position
+        glLoadIdentity();
 
-    // Reset Position
-    glLoadIdentity();
-
-    // Draw
-    glColor3d(1.0d, 1.0d, 1.0d);
-    drawMyCircle(m_rad, m_pos.x(), m_pos.y()); //TODO
+        // Draw
+        glColor3d(1.0d, 1.0d, 1.0d);
+        drawMyCircle(m_rad, m_pos.x(), m_pos.y()); //TODO
+    }
 }

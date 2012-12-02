@@ -26,6 +26,7 @@ class projectile{
     protected:
 
     private:
+        bool live;
         double m_max_range;
         vector3d m_vel;
         vector3d m_pos;

@@ -17,6 +17,7 @@ extern char keys[0x100];
 extern double time_step;
 extern double fps;
 extern int ms_delay;
+extern bool human_is_playing; // Human is either observing or playing
 
 //const int EXIT_WITHOUT_ERROR = 0x0;
 //const int EXIT_HAD_ERROR = 0x1;

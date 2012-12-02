@@ -21,14 +21,21 @@ soldier::soldier() //TODO: rest of variables
 
     m_pos.reset();
     m_prev_pos.reset();
+    m_view_dir.reset();
 
     m_ab_speed = 6.7d / fps;
     m_ab_rotatespeed = (360 / 0.25) / fps;
     m_ab_viewrange = 0.0d;
 
-    m_drawrad = 2.5 * 0.25d;
+    m_drawrad = 2 * 2.5 * 0.25d;
 
     color_red = 1.0d; color_green = 1.0d; color_blue = 1.0d;
+
+    human_control = false;
+
+    viewang = 0.0d;
+
+    n_shots = 0;
 }
 
 soldier::~soldier()
@@ -52,6 +59,7 @@ soldier::soldier(const soldier& clone)
 
     m_pos                   = clone.m_pos;
     m_prev_pos              = clone.m_prev_pos;
+    m_view_dir              = clone.m_view_dir;
 
     m_ab_speed              = clone.m_ab_speed;
 
@@ -62,6 +70,12 @@ soldier::soldier(const soldier& clone)
     color_red = clone.color_red;
     color_green = clone.color_green;
     color_blue = clone.color_blue;
+
+    human_control = clone.human_control;
+
+    viewang = clone.viewang;
+
+    n_shots = clone.n_shots;
 }
 
 const soldier& soldier::operator=(const soldier& other)
@@ -80,6 +94,7 @@ const soldier& soldier::operator=(const soldier& other)
 
         m_pos                   = other.m_pos;
         m_prev_pos              = other.m_prev_pos;
+        m_view_dir              = other.m_view_dir;
 
         m_ab_speed              = other.m_ab_speed;
 
@@ -90,6 +105,12 @@ const soldier& soldier::operator=(const soldier& other)
         color_red = other.color_red;
         color_green = other.color_green;
         color_blue = other.color_blue;
+
+        human_control = other.human_control;
+
+        viewang = other.viewang;
+
+        n_shots = other.n_shots;
     }
     return *this;
 }
@@ -107,6 +128,20 @@ void soldier::draw(){
     // Draw
     glColor3d(color_red, color_green, color_blue);
     drawMyCircle(m_drawrad, m_pos.x(), m_pos.y()); //TODO
+
+    if(human_control){
+        glColor3d(0.0d, 1.0d, 0.3d);
+        glBegin(GL_LINES);
+            vector3d temp_vect_p = pos();
+            vector3d temp_vect_s = m_view_dir;
+            glVertex2d(temp_vect_p.x(), temp_vect_p.y());
+            glVertex2d(temp_vect_p.x() + temp_vect_s.x(), temp_vect_p.y() + temp_vect_s.y());
+        glEnd();
+    }
+
+    for(unsigned long long drawsh = 0; drawsh < n_shots; drawsh ++){
+        shots.at(drawsh).draw();
+    }
 }
 
 /** AI Stuff **/
@@ -120,35 +155,49 @@ void soldier::giveObjective(double obj_x, double obj_y, unsigned char transitTyp
 
 void soldier::cont(const std::vector<soldier>& enemies, unsigned int n_enemies)
 {
-
-    /// Move
-    m_move_dir = m_objectivepos - m_pos;
-    if(m_move_dir.mod() > m_objectiveradius){
-        m_move_dir.normalize();
-        if(m_sprinting){
-            m_pos.sxyz(m_pos.x() + m_move_dir.x() * m_ab_sprint, m_pos.y() + m_move_dir.y() * m_ab_sprint, 0.0d);
-        }
-        else{
-            m_pos.sxyz(m_pos.x() + m_move_dir.x() * m_ab_speed, m_pos.y() + m_move_dir.y() * m_ab_speed, 0.0d);
-        }
-    }
-    check_bounds();
-
-    /// Look and shoot
-    for(unsigned int sc = 0; sc < n_enemies; sc ++){
-        soldier t_sol = enemies.at(sc);
-        vector3d t_vec;
-        t_vec = t_sol.pos();
-        t_vec -= pos();
-        if(t_vec.mod() < m_ab_viewrange){
-            //todo: improve this
-            //m_view_dir.move to
-            std::cout << "RANGE!" << std::endl;
-        }
+    for(unsigned long long csh = 0; csh < n_shots; csh ++){
+        shots.at(csh).cont();
     }
 
+    if(!human_control){
+        /// Move
+        m_move_dir = m_objectivepos - m_pos;
+        if(m_move_dir.mod() > m_objectiveradius){
+            m_move_dir.normalize();
+            if(m_sprinting){
+                m_pos.sxyz(m_pos.x() + m_move_dir.x() * m_ab_sprint, m_pos.y() + m_move_dir.y() * m_ab_sprint, 0.0d);
+            }
+            else{
+                m_pos.sxyz(m_pos.x() + m_move_dir.x() * m_ab_speed, m_pos.y() + m_move_dir.y() * m_ab_speed, 0.0d);
+            }
+        }
+        check_bounds();
 
+        /// Look and shoot
+        for(unsigned int sc = 0; sc < n_enemies; sc ++){
+            soldier t_sol = enemies.at(sc);
+            vector3d t_vec;
+            t_vec = t_sol.pos();
+            t_vec -= pos();
+            if(t_vec.mod() < m_ab_viewrange){
+                //todo: improve this
+                //m_view_dir.move to
+            //std::cout << "RANGE!" << std::endl;
+            }
+        }
+    }
+}
 
+void soldier::fire()
+{
+    projectile new_shot = projectile();
+    vector3d temp_vect = pos();
+    temp_vect += viewdir();
+    new_shot.set_pos(temp_vect.x(), temp_vect.y());
+    temp_vect = viewdir().normal();
+    new_shot.set_vel(temp_vect.x() * 900.0d, temp_vect.y() * 900.0d);
+    shots.push_back(new_shot);
+    n_shots ++;
 }
 
 /** Movement Stuff **/
@@ -161,6 +210,33 @@ const vector3d& soldier::pos()
 void soldier::spos(double x, double y)
 {
     m_pos.sxyz(x, y, 0.0d);
+}
+
+const vector3d& soldier::viewdir()
+{
+    return m_view_dir;
+}
+
+void soldier::sviewdir(double x, double y)
+{
+    m_view_dir.sxyz(x, y, 0.0d);
+}
+void soldier::rotviewdir(double ang)
+{
+    viewang += ang;
+
+    double PI = 3.14159265359d;
+    if(viewang > 2 * PI){
+        viewang -= 2 * PI;
+    if(viewang < -2 * PI){
+    }
+        viewang += 2 * PI;
+    }
+    m_view_dir.sx(m_view_dir.mod() * cos(viewang));
+    m_view_dir.sy(m_view_dir.mod() * sin(viewang));
+
+    m_view_dir.normalize();
+    m_view_dir *= 10.0d;
 }
 
 void soldier::moveUDLR(unsigned char moveDirection)

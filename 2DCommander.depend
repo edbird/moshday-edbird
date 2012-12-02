@@ -20,13 +20,13 @@
 
 1354213184 source:/home/edward/Dropbox/Development/2DCommander/main-special.cpp
 
-1354411412 source:/home/edward/Dropbox/Development/2DCommander/main-timer.cpp
+1354424758 source:/home/edward/Dropbox/Development/2DCommander/main-timer.cpp
 	<GL/glut.h>
 	"top-down-cam.hpp"
 	"team.hpp"
 	"main.hpp"
 
-1354411720 source:/home/edward/Dropbox/Development/2DCommander/main.cpp
+1354421644 source:/home/edward/Dropbox/Development/2DCommander/main.cpp
 	<cstdlib>
 	<cstdio>
 	<iostream>
@@ -41,7 +41,7 @@
 	"main-global.cpp"
 	"main.hpp"
 
-1354399218 /home/edward/Dropbox/Development/2DCommander/main.hpp
+1354417148 /home/edward/Dropbox/Development/2DCommander/main.hpp
 
 1354213169 /home/edward/Dropbox/Development/2DCommander/main-cleanup.cpp
 
@@ -65,7 +65,7 @@
 	<vector>
 	"soldier.hpp"
 
-1354410683 /home/edward/Dropbox/Development/2DCommander/soldier.hpp
+1354423714 /home/edward/Dropbox/Development/2DCommander/soldier.hpp
 	<vector>
 	"projectile.hpp"
 	"weapon.hpp"
@@ -74,7 +74,7 @@
 1354397639 /home/edward/Dropbox/Development/2DCommander/vector3d.hpp
 	<iostream>
 
-1354411566 source:/home/edward/Dropbox/Development/2DCommander/soldier.cpp
+1354424089 source:/home/edward/Dropbox/Development/2DCommander/soldier.cpp
 	<GL/glut.h>
 	"myOpenGLDrawingMethods.hpp"
 	"main.hpp"
@@ -113,13 +113,13 @@
 1354394171 /home/edward/Dropbox/Development/2DCommander/top-down-cam.hpp
 	"vector3d.hpp"
 
-1354402356 source:/home/edward/Dropbox/Development/2DCommander/projectile.cpp
+1354425737 source:/home/edward/Dropbox/Development/2DCommander/projectile.cpp
 	<GL/glut.h>
 	"main.hpp"
 	"myOpenGLDrawingMethods.hpp"
 	"projectile.hpp"
 
-1354402329 /home/edward/Dropbox/Development/2DCommander/projectile.hpp
+1354423995 /home/edward/Dropbox/Development/2DCommander/projectile.hpp
 	"vector3d.hpp"
 
 1354410318 /home/edward/Dropbox/Development/2DCommander/weapon.hpp
