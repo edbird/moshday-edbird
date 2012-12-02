@@ -1,0 +1,7 @@
+
+
+class pistol : public weapon{
+
+
+
+};

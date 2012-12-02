@@ -1,0 +1,129 @@
+# depslib dependency file v1.0
+1354213169 source:/home/edward/Dropbox/Development/2DCommander/main-cleanup.cpp
+
+1354395065 source:/home/edward/Dropbox/Development/2DCommander/main-draw.cpp
+	<GL/glut.h>
+	"main-global.cpp"
+	"team.hpp"
+	"battlefield.hpp"
+	"top-down-cam.hpp"
+
+1354370029 source:/home/edward/Dropbox/Development/2DCommander/main-init.cpp
+	<GL/glut.h>
+
+1354392979 source:/home/edward/Dropbox/Development/2DCommander/main-key.cpp
+	"team.hpp"
+
+1354393807 source:/home/edward/Dropbox/Development/2DCommander/main-resize.cpp
+	<GL/glut.h>
+	"top-down-cam.hpp"
+
+1354213184 source:/home/edward/Dropbox/Development/2DCommander/main-special.cpp
+
+1354411412 source:/home/edward/Dropbox/Development/2DCommander/main-timer.cpp
+	<GL/glut.h>
+	"top-down-cam.hpp"
+	"team.hpp"
+	"main.hpp"
+
+1354411720 source:/home/edward/Dropbox/Development/2DCommander/main.cpp
+	<cstdlib>
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cmath>
+	<vector>
+	<GL/glut.h>
+	"soldier.hpp"
+	"team.hpp"
+	"battlefield.hpp"
+	"top-down-cam.hpp"
+	"main-global.cpp"
+	"main.hpp"
+
+1354399218 /home/edward/Dropbox/Development/2DCommander/main.hpp
+
+1354213169 /home/edward/Dropbox/Development/2DCommander/main-cleanup.cpp
+
+1354213169 /home/edward/Dropbox/Development/2DCommander/main-init.cpp
+	<GL/glut.h>
+
+1354213203 /home/edward/Dropbox/Development/2DCommander/main-resize.cpp
+	<GL/glut.h>
+
+1354213203 /home/edward/Dropbox/Development/2DCommander/main-draw.cpp
+	<GL/glut.h>
+
+1354213189 /home/edward/Dropbox/Development/2DCommander/main-key.cpp
+
+1354213184 /home/edward/Dropbox/Development/2DCommander/main-special.cpp
+
+1354213175 /home/edward/Dropbox/Development/2DCommander/main-timer.cpp
+	<GL/glut.h>
+
+1354404020 /home/edward/Dropbox/Development/2DCommander/team.hpp
+	<vector>
+	"soldier.hpp"
+
+1354410683 /home/edward/Dropbox/Development/2DCommander/soldier.hpp
+	<vector>
+	"projectile.hpp"
+	"weapon.hpp"
+	"vector3d.hpp"
+
+1354397639 /home/edward/Dropbox/Development/2DCommander/vector3d.hpp
+	<iostream>
+
+1354411566 source:/home/edward/Dropbox/Development/2DCommander/soldier.cpp
+	<GL/glut.h>
+	"myOpenGLDrawingMethods.hpp"
+	"main.hpp"
+	"battlefield.hpp"
+	"soldier.hpp"
+
+1354397686 source:/home/edward/Dropbox/Development/2DCommander/vector3d.cpp
+	<cmath>
+	"vector3d.hpp"
+
+1354404040 source:/home/edward/Dropbox/Development/2DCommander/team.cpp
+	"team.hpp"
+
+1354379976 /home/edward/Dropbox/Development/2DCommander/main-global.cpp
+
+1354379976 source:/home/edward/Dropbox/Development/2DCommander/main-global.cpp
+
+1354394911 source:/home/edward/Dropbox/Development/2DCommander/myOpenGLDrawingMethods.cpp
+	<cmath>
+	<GL/glut.h>
+	"myOpenGLDrawingMethods.hpp"
+
+1354382413 /home/edward/Dropbox/Development/2DCommander/myOpenGLDrawingMethods.hpp
+	<cmath>
+
+1354384695 source:/home/edward/Dropbox/Development/2DCommander/battlefield.cpp
+	<GL/glut.h>
+	"battlefield.hpp"
+
+1354384677 /home/edward/Dropbox/Development/2DCommander/battlefield.hpp
+	"vector3d.hpp"
+
+1354394191 source:/home/edward/Dropbox/Development/2DCommander/top-down-cam.cpp
+	"top-down-cam.hpp"
+
+1354394171 /home/edward/Dropbox/Development/2DCommander/top-down-cam.hpp
+	"vector3d.hpp"
+
+1354402356 source:/home/edward/Dropbox/Development/2DCommander/projectile.cpp
+	<GL/glut.h>
+	"main.hpp"
+	"myOpenGLDrawingMethods.hpp"
+	"projectile.hpp"
+
+1354402329 /home/edward/Dropbox/Development/2DCommander/projectile.hpp
+	"vector3d.hpp"
+
+1354410318 /home/edward/Dropbox/Development/2DCommander/weapon.hpp
+
+1354410342 source:/home/edward/Dropbox/Development/2DCommander/weapon.cpp
+	"weapon.hpp"
+
