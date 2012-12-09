@@ -43,7 +43,10 @@
 		</Linker>
 		<Unit filename="battlefield.cpp" />
 		<Unit filename="battlefield.hpp" />
-		<Unit filename="class-template.txt" />
+		<Unit filename="box.cpp" />
+		<Unit filename="box.hpp" />
+		<Unit filename="collect.cpp" />
+		<Unit filename="collect.hpp" />
 		<Unit filename="main-cleanup.cpp" />
 		<Unit filename="main-draw.cpp" />
 		<Unit filename="main-global.cpp" />
@@ -56,8 +59,14 @@
 		<Unit filename="main.hpp" />
 		<Unit filename="myOpenGLDrawingMethods.cpp" />
 		<Unit filename="myOpenGLDrawingMethods.hpp" />
+		<Unit filename="objective.cpp" />
+		<Unit filename="objective.hpp" />
+		<Unit filename="rand-gen.cpp" />
+		<Unit filename="rand-gen.hpp" />
 		<Unit filename="soldier.cpp" />
 		<Unit filename="soldier.hpp" />
+		<Unit filename="spawnpoint.cpp" />
+		<Unit filename="spawnpoint.hpp" />
 		<Unit filename="team.cpp" />
 		<Unit filename="team.hpp" />
 		<Unit filename="top-down-cam.cpp" />

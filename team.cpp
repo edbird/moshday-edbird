@@ -1,58 +1,26 @@
 
 #include "team.hpp"
 
-
-team::team()
+team::team(unsigned char teamid)
 {
-    //todo:
+    m_team_uid = teamid;
 }
 
-team::~team()
+~team::team()
 {
-    //todo:
+    // Nothing to free
 }
 
 team::team(const team& clone)
 {
-    //todo:
+    m_team_uid = clone.m_team_uid;
 }
 
 const team& team::operator=(const team& other)
 {
-    //todo:
+    m_team_uid = other.m_team_uid;
 }
 
-void team::addSoldier(const soldier& newSoldier)
-{
-    soldiers.push_back(newSoldier);
-    m_n_soldiers ++;
-}
 
-void team::setEnemy(team* enemy)
-{
-    v_enemyteams.push_back(enemy);
-    enemy->v_enemyteams.push_back(enemy);
-}
 
-const std::vector<team*>& team::getEnemy()
-{
-    return v_enemyteams;
-}
-//
-//bool team::isAlly(const soldier& checksoldier)
-//{
-//    for(int ch = 0; ch < m_n_soldiers; ch ++)
-//    {
-//        if(&v_enemyteams.at(ch) == &checksoldier)
-//        {
-//            // Is an enemy
-//            return false;
-//        }
-//    }
-//    return true;
-//}
 
-team team0 = team();
-team team1 = team();
-
-team* player_ally = &team0;

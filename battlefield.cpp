@@ -3,38 +3,84 @@
 
 #include "battlefield.hpp"
 
-battlefield::battlefield()
+//battlefield::battlefield(const void* const collected_pointer)// : p_collected(collected_pointer)
+//{
+//    m_pos.reset();
+//    m_size.reset();
+//}
+
+battlefield::battlefield(const vector3d& pos, const vector3d& size)
 {
-    m_pos.reset();
-    m_size.reset();
-    m_upleft.reset();
-    m_upright.reset();
-    m_downleft.reset();
-    m_downright.reset();
+    m_pos.sxyz(pos.x(), pos.y(), 0.0d);
+    m_size.sxyz(size.x(), size.y(), 0.0d);
+}
+
+battlefield::battlefield(double x, double y, double w, double h)
+{
+    m_pos.sxyz(x, y, 0.0d);
+    m_size.sxyz(w, h, 0.0d);
 }
 
 battlefield::~battlefield()
 {
-
+    // Nothing to free
 }
 
-void battlefield::draw()
+battlefield::battlefield(const battlefield& clone)// : p_collected(clone.p_collected)
+{
+    m_pos = clone.m_pos;
+    m_size = clone.m_size;
+}
+
+const battlefield& battlefield::operator=(const battlefield& other)
+{
+    if(this == &other){
+        //TODO: dont know what to do?
+    }
+
+    m_pos = other.m_pos;
+    m_size = other.m_size;
+
+    return *this;
+}
+
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
+
+void battlefield::draw() const
 {
 
     // Reset Position
     glLoadIdentity();
 
     // Draw
-    glColor3d(1.0d, 1.0d, 1.0d);
+    switch(m_area_type){
+        case AREA_TYPE_BATTLEFIELD:
+            glColor3d(1.0d, 1.0d, 1.0d);
+        break;
+
+        case AREA_TYPE_NEUTRAL:
+            glColor3d(0.66d, 0.66d, 0.66d);
+        break;
+
+        case AREA_TYPE_BASE:
+            glColor3d(1.0d, 0.0d, 0.0d);
+        break;
+
+        default:
+            glColor3d(1.0d, 1.0d, 1.0d);
+        break;
+    }
+
+
     glBegin(GL_LINE_LOOP);
-        glVertex2d(m_upleft.x(), m_upleft.y());
-        glVertex2d(m_downleft.x(), m_downleft.y());
-        glVertex2d(m_downright.x(), m_downright.y());
-        glVertex2d(m_upright.x(), m_upright.y());
+        glVertex2d(m_pos.x(), m_pos.y());
+        glVertex2d(m_pos.x() + m_size.x(), m_pos.y());
+        glVertex2d(m_pos.x() + m_size.x(), m_pos.y() + m_size.y());
+        glVertex2d(m_pos.x(), m_pos.y() + m_size.y());
     glEnd();
 }
 
-/// ************************************************
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
 
 const vector3d& battlefield::pos()
 {
@@ -46,136 +92,60 @@ const vector3d& battlefield::size()
     return m_size;
 }
 
-const vector3d& battlefield::upleft()
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
+
+double battlefield::posx()
 {
-    return m_upleft;
+    return m_pos.x();
 }
 
-const vector3d& battlefield::upright()
+double battlefield::posy()
 {
-    return m_upright;
+    return m_pos.y();
 }
 
-const vector3d& battlefield::downleft()
+double battlefield::sizex()
 {
-    return m_downleft;
+    return m_size.x();
 }
 
-const vector3d& battlefield::downright()
+double battlefield::sizey()
 {
-    return m_downright;
+    return m_size.y();
 }
 
-/// ************************************************
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
 
 void battlefield::setpos(const vector3d& newpos)
 {
     m_pos = newpos;
-    m_upleft = m_pos;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
 }
 
 void battlefield::setsize(const vector3d& newsize)
 {
     m_size = newsize;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
 }
 
-void battlefield::setupleft(const vector3d& newupleft)
-{
-    m_upleft = newupleft;
-    m_pos = m_upleft;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
-}
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
 
-void battlefield::setupright(const vector3d& newupright)
-{
-    m_upright = newupright;
-    m_pos.sxyz(m_upright.x() - m_size.x(), m_upright.y(), 0.0d);
-    m_upleft = m_pos;
-    m_downleft.sxyz(m_upright.x() - m_size.x(), m_upright.y() - m_size.y(), 0.0d);
-    m_downright.sxyz(m_upright.x(), m_upright.y() - m_upright.y(), 0.0d);
-}
-
-void battlefield::setdownleft(const vector3d& newdownleft)
-{
-    m_downleft = newdownleft;
-    m_pos.sxyz(m_downleft.x(), m_downleft.y() + m_size.y(), 0.0d);
-    m_upleft = m_pos;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downright = m_pos + m_size;
-}
-
-void battlefield::setdownright(const vector3d& newdownright)
-{
-    m_downright = newdownright;
-    m_pos = m_downright - m_size;
-    m_upleft = m_pos;
-    m_upright.sxyz(m_upleft.x() + m_size.y(), m_upleft.y(), 0.0d);
-    m_downleft.sxyz(m_upleft.x(), m_upleft.y() - m_size.y(), 0.0d);
-}
-
-/// ************************************************
-//TODO: check that this actually works (re-write using '.sxyz')
 void battlefield::setpos(double x, double y)
 {
     m_pos.sxyz(x, y, 0.0d);
-    m_upleft = m_pos;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
 }
 
 void battlefield::setsize(double x, double y)
 {
     m_size.sxyz(x, y, 0.0d);
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
 }
 
-void battlefield::setupleft(double x, double y)
+/// ******** ******** ******** ******** ******** ******** ******** ******** ///
+
+void battlefield::setAreaType(AREA_TYPE areatype)
 {
-    m_upleft.sxyz(x, y, 0.0d);
-    m_pos = m_upleft;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downleft.sxyz(m_pos.x(), m_pos.y() + m_size.y(), 0.0d);
-    m_downright = m_pos + m_size;
+    m_area_type = areatype;
 }
 
-void battlefield::setupright(double x, double y)
+AREA_TYPE battlefield::getAreaType()
 {
-    m_upright.sxyz(x, y, 0.0d);
-    m_pos.sxyz(m_upright.x() - m_size.x(), m_upright.y(), 0.0d);
-    m_upleft = m_pos;
-    m_downleft.sxyz(m_upright.x() - m_size.x(), m_upright.y() - m_size.y(), 0.0d);
-    m_downright.sxyz(m_upright.x(), m_upright.y() - m_upright.y(), 0.0d);
+    return m_area_type;
 }
-
-void battlefield::setdownleft(double x, double y)
-{
-    m_downleft.sxyz(x, y, 0.0d);
-    m_pos.sxyz(m_downleft.x(), m_downleft.y() + m_size.y(), 0.0d);
-    m_upleft = m_pos;
-    m_upright.sxyz(m_pos.x() + m_size.x(), m_pos.y(), 0.0d);
-    m_downright = m_pos + m_size;
-}
-
-void battlefield::setdownright(double x, double y)
-{
-    m_downright.sxyz(x, y, 0.0d);
-    m_pos = m_downright - m_size;
-    m_upleft = m_pos;
-    m_upright.sxyz(m_upleft.x() + m_size.y(), m_upleft.y(), 0.0d);
-    m_downleft.sxyz(m_upleft.x(), m_upleft.y() - m_size.y(), 0.0d);
-}
-
-/// ************************************************
-
-battlefield arena = battlefield();

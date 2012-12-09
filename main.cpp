@@ -9,7 +9,7 @@
 #include <GL/glut.h>
 
 #include "soldier.hpp"
-#include "team.hpp"
+#include "collect.hpp"
 #include "battlefield.hpp"
 #include "top-down-cam.hpp"
 
@@ -53,42 +53,39 @@ int main(int argc, char* argv[]){
     /// Team and Player Stuff
 
     // Camera Stuff
-    camera.set_centre_x(0.0d);
-    camera.set_centre_y(0.0d);
-    camera.set_width(200.0d);
+    camera.set_centre_x(350.0d);
+    camera.set_centre_y(250.0d);
+    camera.set_width(4*200.0d);
     camera.set_w2h_ratio(1.0d);
-    camera.set_cam_vel(200.0d / fps);
-    //camera.set_height(100.0d);
+    camera.set_cam_vel(4*200.0d / fps);
+
+    // Create Teams
+    global.addTeams(2);
 
     // Setup the Battlefield
-    arena.setpos(-350.0d, -200.0d);
-    arena.setsize(700.0d, 400.0d);
+    global.addArenaSection(0.0d, 0.0d, 700.0d, 500.0d);
+    global.setArenaSectionState(0, AREA_TYPE_NEUTRAL);
+    global.addArenaSection(battlefield(50.0d, 50.0d, 100.0d, 400.0d));
+    global.setArenaSectionState(1, AREA_TYPE_BASE);
+    global.addArenaSection(battlefield(600.0d, 50.0d, 100.0d, 400.0d));
+    global.setArenaSectionState(2, AREA_TYPE_BASE);
 
-    soldier nextsoldier0 = soldier();
-    soldier nextsoldier1 = soldier();
-    nextsoldier0.color_red = 0.5d; nextsoldier0.color_green = 0.8d; nextsoldier0.color_blue = 0.0d;
-    nextsoldier1.color_red = 0.8d; nextsoldier1.color_green = 0.5d; nextsoldier1.color_blue = 0.0d;
-    nextsoldier0.m_ab_viewrange = 10.0;
-    nextsoldier1.m_ab_viewrange = 10.0;
-    nextsoldier0.giveObjective(0.0d, 0.0d, nextsoldier0.TRANSIT_TYPE_GUNRUN, nextsoldier0.OBJECTIVE_TYPE_JUSTMOVE);
-    nextsoldier1.giveObjective(0.0d, 0.0d, nextsoldier1.TRANSIT_TYPE_GUNRUN, nextsoldier1.OBJECTIVE_TYPE_JUSTMOVE);
-    // TODO: Random Soldiers
+
+    // Setup spawnpoints
+    global.addSpawnPoint(spawnpoint())
+
+    global.addSoldier(soldier());
+//    // TODO: Random Soldiers
+//    nextsoldier.color_red = 0.5d; nextsoldier.color_green = 0.8d; nextsoldier.color_blue = 0.0d;
+//    nextsoldier.m_ab_viewrange = 10.0;
+//    nextsoldier.giveObjective(0.0d, 0.0d, nextsoldier.TRANSIT_TYPE_GUNRUN, nextsoldier.OBJECTIVE_TYPE_JUSTMOVE);
+
+
     for(unsigned int addsol = 0; addsol < 1; addsol ++){
-        nextsoldier0.spos(-320.0d, -50.0d + 20.0d * addsol);
-        nextsoldier1.spos(+320.0d, -60.0d + 20.0d * addsol);
-        nextsoldier0.human_control = true;
-        nextsoldier0.sviewdir(10.0d, 0.0d);
-        nextsoldier0.viewang = 0.0d;
-        team0.addSoldier(nextsoldier0);
-        team1.addSoldier(nextsoldier1);
         //team0.soldiers.at(addsol).spos(-320.0d, -50.0d + 20.0d * addsol);
         //team1.soldiers.at(addsol).spos(+320.0d, -60.0d + 20.0d * addsol);
     }
-    human_soldier = &team0.soldiers.at(0);
 
-        vector3d temp_vector = human_soldier->pos();
-        camera.set_centre_y(temp_vector.y());
-        camera.set_centre_x(temp_vector.x());
 
 
     /// Team and Player Stuff

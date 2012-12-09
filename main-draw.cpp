@@ -4,7 +4,7 @@
 
 #include "main-global.cpp"
 
-#include "team.hpp"
+#include "collect.hpp"
 #include "battlefield.hpp"
 #include "top-down-cam.hpp"
 
@@ -51,15 +51,13 @@ void drawScene(){
     glEnd();
 
     // Battlefield stuff
-    arena.draw();
-
-    /// Soldier Stuff
-    for(int s = 0; s < team0.m_n_soldiers; s ++){
-        team0.soldiers.at(s).draw();
+    for(unsigned int s = 0; s < global.narenasections(); s ++){
+        global.arenasections().at(s).draw();
     }
 
-    for(int s = 0; s < team1.m_n_soldiers; s ++){
-        team1.soldiers.at(s).draw();
+    /// Soldier Stuff
+    for(unsigned int s = 0; s < global.nsoldiers(); s ++){
+        global.soldiers().at(s).draw();
     }
 
 

@@ -54,16 +54,16 @@ class vector3d
         double normalize();
 
         // Get
-        double x() { return v[0]; }
-        double y() { return v[1]; }
-        double z() { return v[2]; }
-        double xyz(double& x, double& y, double& z){
+        double x() const { return v[0]; }
+        double y() const { return v[1]; }
+        double z() const { return v[2]; }
+        double xyz(double& x, double& y, double& z) const {
             x = v[0];
             y = v[1];
             z = v[2];
             return v[0];
         }
-        double xyz(double& y, double& z){
+        double xyz(double& y, double& z) const {
             y = v[1];
             z = v[2];
             return v[0];

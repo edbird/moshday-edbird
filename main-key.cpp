@@ -1,5 +1,4 @@
 
-#include "team.hpp"
 
 // Globals (for keyboard)
 char keys[0x100];

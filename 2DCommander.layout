@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="battlefield.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="991" topLine="129" />
+	<File name="battlefield.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="2907" topLine="123" />
 	</File>
-	<File name="battlefield.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="447" topLine="7" />
+	<File name="battlefield.hpp" open="1" top="0" tabpos="7">
+		<Cursor position="85" topLine="0" />
 	</File>
-	<File name="class-template.txt" open="0" top="0" tabpos="0">
-		<Cursor position="1014" topLine="37" />
+	<File name="box.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="243" topLine="0" />
+	</File>
+	<File name="collect.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="2511" topLine="96" />
+	</File>
+	<File name="collect.hpp" open="1" top="0" tabpos="4">
+		<Cursor position="1108" topLine="31" />
 	</File>
 	<File name="main-cleanup.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2" topLine="0" />
 	</File>
-	<File name="main-draw.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="1305" topLine="9" />
+	<File name="main-draw.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1298" topLine="40" />
 	</File>
 	<File name="main-global.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="22" topLine="0" />
@@ -23,22 +29,22 @@
 		<Cursor position="511" topLine="0" />
 	</File>
 	<File name="main-key.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="213" topLine="0" />
+		<Cursor position="47" topLine="0" />
 	</File>
 	<File name="main-resize.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="212" topLine="0" />
 	</File>
 	<File name="main-special.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="76" topLine="0" />
+		<Cursor position="4" topLine="0" />
 	</File>
-	<File name="main-timer.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="601" topLine="0" />
+	<File name="main-timer.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="414" topLine="14" />
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1485" topLine="30" />
+		<Cursor position="1621" topLine="55" />
 	</File>
 	<File name="main.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="410" topLine="0" />
+		<Cursor position="471" topLine="0" />
 	</File>
 	<File name="myOpenGLDrawingMethods.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="156" topLine="0" />
@@ -46,28 +52,43 @@
 	<File name="myOpenGLDrawingMethods.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="217" topLine="0" />
 	</File>
-	<File name="soldier.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="2025" topLine="69" />
+	<File name="objective.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="400" topLine="2" />
 	</File>
-	<File name="soldier.hpp" open="1" top="0" tabpos="6">
-		<Cursor position="2216" topLine="47" />
+	<File name="rand-gen.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="36" topLine="0" />
 	</File>
-	<File name="team.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="463" topLine="0" />
+	<File name="rand-gen.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="85" topLine="0" />
 	</File>
-	<File name="team.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1181" topLine="0" />
+	<File name="soldier.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="789" topLine="30" />
 	</File>
-	<File name="top-down-cam.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1696" topLine="66" />
+	<File name="soldier.hpp" open="1" top="0" tabpos="2">
+		<Cursor position="342" topLine="0" />
 	</File>
-	<File name="top-down-cam.hpp" open="1" top="0" tabpos="7">
-		<Cursor position="809" topLine="0" />
+	<File name="spawnpoint.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="38" topLine="0" />
+	</File>
+	<File name="spawnpoint.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="396" topLine="3" />
+	</File>
+	<File name="team.cpp" open="1" top="1" tabpos="11">
+		<Cursor position="280" topLine="0" />
+	</File>
+	<File name="team.hpp" open="1" top="0" tabpos="10">
+		<Cursor position="99" topLine="0" />
+	</File>
+	<File name="top-down-cam.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="115" topLine="3" />
+	</File>
+	<File name="top-down-cam.hpp" open="0" top="0" tabpos="7">
+		<Cursor position="1013" topLine="0" />
 	</File>
 	<File name="vector3d.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2693" topLine="111" />
+		<Cursor position="2440" topLine="112" />
 	</File>
 	<File name="vector3d.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1369" topLine="27" />
+		<Cursor position="1512" topLine="39" />
 	</File>
 </CodeBlocks_layout_file>

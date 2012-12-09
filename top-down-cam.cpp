@@ -116,3 +116,4 @@ void tdc::set_cam_vel(double arg)
 
 
 tdc camera = tdc();
+void* tdc_camera_follow = NULL;

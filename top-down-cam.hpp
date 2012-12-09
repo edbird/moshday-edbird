@@ -48,5 +48,6 @@ class tdc{
 };
 
 extern tdc camera;
+extern void* tdc_camera_follow;
 
 #endif

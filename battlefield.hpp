@@ -1,43 +1,54 @@
 
 #include "vector3d.hpp"
 
-
 #ifndef __BATTLEFIELD__HPP__
 #define __BATTLEFIELD__HPP__
+
+enum AREA_TYPE : unsigned char{ //TODO: is this useful for anything?
+    AREA_TYPE_BATTLEFIELD,
+    AREA_TYPE_NEUTRAL,
+    AREA_TYPE_BASE
+};
 
 class battlefield{
 
     public:
         // Constructor, Destructors
-        battlefield();
+        //battlefield(const void* const collected_pointer);
+        battlefield(const vector3d& pos, const vector3d& size);
+        battlefield(double x, double y, double w, double h);
         ~battlefield();
+        battlefield(const battlefield& clone);
+        const battlefield& operator=(const battlefield& other);
+
+        // Pointer to the collecter
+        //const void* const p_collected;
 
         // Drawing Method
-        void draw();
+        void draw() const;
 
-        // Get
+        // Get - Method 1
         const vector3d& pos();
         const vector3d& size();
-        const vector3d& upleft();
-        const vector3d& upright();
-        const vector3d& downleft();
-        const vector3d& downright();
+
+        // Get - Method 2
+        //TODO: this is a fudge to get vector3d.x() to work - can it be done another way?
+        double posx();
+        double posy();
+        double sizex();
+        double sizey();
 
         // Set - Method 1
         void setpos(const vector3d& newpos);
         void setsize(const vector3d& newsize);
-        void setupleft(const vector3d& newupleft);
-        void setupright(const vector3d& newupright);
-        void setdownleft(const vector3d& newdownleft);
-        void setdownright(const vector3d& newdownright);
 
         // Set - Method 2
         void setpos(double x, double y);
         void setsize(double x, double y);
-        void setupleft(double x, double y);
-        void setupright(double x, double y);
-        void setdownleft(double x, double y);
-        void setdownright(double x, double y);
+
+        // Area Type
+        void setAreaType(AREA_TYPE areatype);
+        AREA_TYPE getAreaType();
 
 
     protected:
@@ -46,14 +57,9 @@ class battlefield{
     private:
         vector3d m_pos;
         vector3d m_size;
-        vector3d m_upleft;
-        vector3d m_upright;
-        vector3d m_downleft;
-        vector3d m_downright;
 
+        AREA_TYPE m_area_type;
 
 };
-
-extern battlefield arena;
 
 #endif
